@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NOME DO RESTAURANTE</title>
+<meta name="description" content="NOME DO RESTAURANTE — Restaurante em CIDADE DO RESTAURANTE. Reservas: TELEFONE DO RESTAURANTE"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<script>document.documentElement.classList.add('has-js');</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF6EF;
+  --warm:#F2EBE0;
+  --sand:#E0D3C4;
+  --red:#7A1E1E;
+  --red-dk:#5C1414;
+  --red-lt:#A83030;
+  --gold:#C8A96E;
+  --gold-lt:#E8D4A8;
+  --brown:#2A1508;
+  --brown-md:#5C3018;
+  --gray:#8A7060;
+  --dark:#1A0C04;
+  --white:#FFFFFF;
+  --surface:#FFFFFF;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'DM Sans',-apple-system,sans-serif;
+  --sh:0 4px 24px rgba(26,12,4,.10);
+  --sh-md:0 8px 40px rgba(26,12,4,.15);
+  --sh-lg:0 16px 64px rgba(26,12,4,.20);
+  --dur:.3s;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--brown);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-d);line-height:1.12}
+
+/* ── Layout ── */
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+section{padding:96px 0}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:4px;font-family:var(--font-b);font-size:.875rem;font-weight:500;letter-spacing:.04em;cursor:pointer;border:none;transition:all var(--dur) var(--ease)}
+.btn-primary{background:var(--red);color:var(--white);box-shadow:0 4px 16px rgba(122,30,30,.30)}
+.btn-primary:hover{background:var(--red-dk);transform:translateY(-2px);box-shadow:0 8px 28px rgba(122,30,30,.38)}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.55)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:var(--white);transform:translateY(-2px)}
+.btn-outline-dark{background:transparent;color:var(--red);border:1.5px solid var(--red)}
+.btn-outline-dark:hover{background:var(--red);color:var(--white);transform:translateY(-2px)}
+
+/* ── Labels ── */
+.label{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.label::before{content:'';width:24px;height:1px;background:var(--gold);flex-shrink:0}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 0;transition:all .4s var(--ease)}
+#nav.scrolled{background:rgba(26,12,4,.96);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{font-family:var(--font-d);font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.02em;white-space:nowrap}
+.nav-logo span{color:var(--gold)}
+.nav-logo img{display:block;width:auto;max-width:170px;max-height:46px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.7);letter-spacing:.04em;position:relative;padding-bottom:3px;transition:color var(--dur) var(--ease)}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width var(--dur) var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-social{display:flex;gap:12px}
+.nav-social a{font-size:.8rem;color:rgba(255,255,255,.55);transition:color var(--dur)}
+.nav-social a:hover{color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:all .3s}
+.mob{display:none;position:fixed;inset:0;z-index:199;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mob.open{display:flex}
+.mob-close{position:absolute;top:20px;right:28px;background:none;border:none;font-size:1.5rem;color:rgba(255,255,255,.6);cursor:pointer}
+.mob a{font-family:var(--font-d);font-size:2rem;font-weight:400;color:rgba(255,255,255,.85);transition:color .2s}
+.mob a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#1A0C04 0%,#3A1A0A 40%,#2A1008 100%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(26,12,4,.92) 0%,rgba(26,12,4,.60) 55%,rgba(26,12,4,.30) 100%)}
+.hero-photo{position:absolute;inset:0;z-index:0}
+.hero-photo-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#3A1A0A 0%,#5C2C10 35%,#8A4820 65%,#4A2010 100%);display:flex;align-items:center;justify-content:center}
+.hero-photo-placeholder svg{opacity:.08;width:200px;height:200px}
+.tem-foto{background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important}
+.tem-foto svg{display:none}
+.hero-content{position:relative;z-index:1;padding:120px 0 80px;max-width:680px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(200,169,110,.12);border:1px solid rgba(200,169,110,.25);color:var(--gold-lt);padding:8px 16px;border-radius:99px;font-size:.75rem;font-weight:500;margin-bottom:26px;letter-spacing:.06em}
+.hero h1{font-size:clamp(2.8rem,6vw,5.2rem);font-weight:700;color:var(--white);line-height:1.06;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-lead{font-size:1.05rem;color:rgba(255,255,255,.68);line-height:1.82;max-width:520px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.hero-info{display:flex;gap:32px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1);padding-top:32px}
+.hi{display:flex;align-items:center;gap:10px}
+.hi-icon{font-size:1rem;opacity:.7}
+.hi-text{font-size:.8rem;color:rgba(255,255,255,.55)}
+.hi-text strong{display:block;font-size:.85rem;font-weight:500;color:rgba(255,255,255,.85)}
+
+/* ── RIBBON ── */
+.ribbon{background:var(--red);color:rgba(255,255,255,.85);padding:13px 0;overflow:hidden}
+.ribbon-track{display:flex;gap:48px;width:max-content;animation:ticker 28s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ri{display:flex;align-items:center;gap:12px;white-space:nowrap;font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase}
+.rd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.35);flex-shrink:0}
+
+/* ── SOBRE ── */
+.sobre{background:var(--surface)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sobre-visual{position:relative}
+.sobre-frame{aspect-ratio:4/5;border-radius:8px;overflow:hidden;box-shadow:var(--sh-lg);position:relative}
+.sobre-placeholder{width:100%;height:100%;background:linear-gradient(145deg,#3A1A0A,#6A3018 50%,#8A4820);display:flex;align-items:center;justify-content:center}
+.sobre-badge{position:absolute;bottom:-16px;right:-16px;background:var(--surface);border-radius:8px;padding:18px 22px;box-shadow:var(--sh-lg);border:1px solid rgba(42,21,8,.06);text-align:center}
+.sb-n{font-family:var(--font-d);font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.sb-l{font-size:.7rem;color:var(--gray);margin-top:4px}
+.sobre-text h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:18px}
+.sobre-text h2 em{font-style:italic;color:var(--red)}
+.sobre-body{font-size:.95rem;color:var(--brown-md);line-height:1.88}
+.sobre-body p+p{margin-top:14px}
+.sobre-feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.sf{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--warm);border-radius:6px}
+.sf-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.sf p{font-size:.82rem;color:var(--brown-md)}
+
+/* ── PRATOS ── */
+.pratos{background:var(--warm)}
+.pratos-head{text-align:center;margin-bottom:60px}
+.pratos-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:10px}
+.pratos-head p{font-size:1rem;color:var(--gray);max-width:480px;margin:0 auto}
+.pratos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prato{background:var(--surface);border-radius:8px;overflow:hidden;box-shadow:var(--sh);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);cursor:default}
+.prato:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.prato-img{aspect-ratio:4/3;overflow:hidden;position:relative}
+.prato-ph{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:flex-start;padding:14px}
+.ph1{background:linear-gradient(145deg,#5C2C10,#8A4820 60%,#AA6030)}
+.ph2{background:linear-gradient(145deg,#2A1008,#4A2818 60%,#7A4828)}
+.ph3{background:linear-gradient(145deg,#6A3018,#9A5030 60%,#C07848)}
+.prato-tag{background:rgba(0,0,0,.45);color:rgba(255,255,255,.9);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;backdrop-filter:blur(4px)}
+.prato-body{padding:22px}
+.prato-body h3{font-size:1.3rem;font-weight:700;color:var(--brown);margin-bottom:6px}
+.prato-body p{font-size:.86rem;color:var(--gray);line-height:1.75;margin-bottom:14px}
+.prato-price{font-family:var(--font-d);font-size:1.4rem;font-weight:700;color:var(--red)}
+
+/* ── MENU ── */
+.menu-section{background:var(--surface)}
+.menu-head{text-align:center;margin-bottom:56px}
+.menu-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:8px}
+.menu-tabs{display:flex;justify-content:center;gap:0;margin-bottom:48px;border:1px solid var(--sand);border-radius:6px;overflow:hidden;width:fit-content;margin:0 auto 48px}
+.mtab{padding:12px 26px;font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;transition:all var(--dur);border-right:1px solid var(--sand)}
+.mtab:last-child{border-right:none}
+.mtab.active,.mtab:hover{background:var(--red);color:var(--white)}
+.menu-cat{display:none}
+.menu-cat.active{display:block}
+.menu-items{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.mi{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:20px 0;border-bottom:1px solid var(--sand)}
+.mi:last-child{border-bottom:none}
+.mi-info h4{font-size:1.05rem;font-weight:500;color:var(--brown);margin-bottom:4px}
+.mi-info p{font-size:.82rem;color:var(--gray);line-height:1.65;max-width:320px}
+.mi-price{font-family:var(--font-d);font-size:1.2rem;font-weight:700;color:var(--red);white-space:nowrap;flex-shrink:0;margin-top:2px}
+.menu-col{padding:0 28px}
+.menu-col:first-child{border-right:1px solid var(--sand);padding-left:0}
+.menu-col:last-child{padding-right:0}
+
+/* ── HORÁRIOS ── */
+.horarios{background:var(--dark);position:relative;overflow:hidden}
+.horarios::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(122,30,30,.12) 0%,transparent 65%);pointer-events:none}
+.hor-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.hor-col{padding:0 40px}
+.hor-col:first-child{padding-left:0}
+.hor-col:last-child{padding-right:0;border-left:1px solid rgba(255,255,255,.08)}
+.hor-col:nth-child(2){border-left:1px solid rgba(255,255,255,.08)}
+.hor-col h3{font-family:var(--font-d);font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:22px}
+.hor-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hor-row:last-child{border-bottom:none}
+.hor-day{font-size:.82rem;color:rgba(255,255,255,.5)}
+.hor-time{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.85)}
+.hor-time.closed{color:rgba(255,255,255,.3)}
+.mapa-placeholder{width:100%;aspect-ratio:16/7;background:linear-gradient(135deg,#1E1008 0%,#2A1A0E 50%,#1A0E06 100%);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px solid rgba(255,255,255,.06);margin-top:8px}
+.mapa-placeholder p{font-size:.82rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
+.morada{margin-top:16px}
+.morada p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8}
+.morada strong{color:rgba(255,255,255,.85);font-weight:500}
+
+/* ── DEPOIMENTOS ── */
+.depoimentos{background:var(--warm)}
+.dep-head{text-align:center;margin-bottom:56px}
+.dep-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:8px}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dep{background:var(--surface);border-radius:8px;padding:30px 26px;box-shadow:var(--sh);transition:transform var(--dur),box-shadow var(--dur);cursor:default}
+.dep:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
+.dep-stars{color:#C88840;font-size:.85rem;letter-spacing:3px;margin-bottom:14px}
+.dep blockquote{font-family:var(--font-d);font-size:1.05rem;font-style:italic;color:var(--brown);line-height:1.65;margin-bottom:20px}
+.dep-foot{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--sand)}
+.dep-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1rem;font-weight:700}
+.av1{background:rgba(122,30,30,.1);color:var(--red)}
+.av2{background:rgba(200,169,110,.15);color:#8A6020}
+.av3{background:rgba(42,21,8,.08);color:var(--brown-md)}
+.dep-name{font-size:.86rem;font-weight:500;color:var(--brown)}
+.dep-loc{font-size:.72rem;color:var(--gray);margin-top:2px}
+
+/* ── RESERVAS ── */
+.reservas{background:var(--dark)}
+.res-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
+.res-info .label{color:var(--gold-lt)}
+.res-info .label::before{background:var(--gold-lt)}
+.res-info h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--white);margin-bottom:16px}
+.res-info p{font-size:.96rem;color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:28px}
+.res-contact{display:flex;flex-direction:column;gap:10px}
+.rc{display:flex;align-items:center;gap:14px;padding:13px 16px;background:rgba(255,255,255,.05);border-radius:6px;transition:background var(--dur)}
+.rc:hover{background:rgba(255,255,255,.08)}
+.rc-icon{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.rci1{background:rgba(37,211,102,.15)}
+.rci2{background:rgba(200,169,110,.15)}
+.rci3{background:rgba(255,255,255,.08)}
+.rc-main{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.85)}
+.rc-sub{font-size:.74rem;color:rgba(255,255,255,.4);margin-top:1px}
+.form-wrap{background:var(--surface);border-radius:8px;padding:40px}
+.form-wrap h3{font-family:var(--font-d);font-size:1.7rem;font-weight:700;color:var(--brown);margin-bottom:24px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.72rem;font-weight:600;color:var(--brown);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1.5px solid var(--sand);border-radius:6px;font-family:var(--font-b);font-size:.9rem;color:var(--brown);background:var(--cream);outline:none;transition:border-color var(--dur);resize:vertical}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-submit{width:100%;margin-top:16px;padding:15px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:var(--font-b);font-size:.875rem;font-weight:500;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 16px rgba(122,30,30,.28);transition:all var(--dur)}
+.btn-submit:hover{background:var(--red-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,30,30,.36)}
+.form-ok{display:none;text-align:center;padding:32px}
+.form-ok h4{font-family:var(--font-d);font-size:1.6rem;color:var(--brown);margin-bottom:8px}
+.form-ok p{font-size:.88rem;color:var(--gray)}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:64px 0 24px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:24px}
+.foot-logo{font-family:var(--font-d);font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.foot-logo span{color:var(--gold)}
+.foot-logo img{display:block;width:auto;max-width:170px;max-height:54px;object-fit:contain;margin-bottom:12px}
+.foot-desc{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.82;max-width:260px;margin-bottom:20px}
+.foot-soc{display:flex;gap:9px}
+.fs{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.55);cursor:pointer;transition:all var(--dur)}
+.fs:hover{background:var(--red);color:var(--white);transform:translateY(-2px)}
+.foot-col h5{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{font-size:.82rem;color:rgba(255,255,255,.45);transition:color var(--dur)}
+.foot-col a:hover{color:var(--gold)}
+.foot-btm{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.foot-btm p{font-size:.72rem;color:rgba(255,255,255,.22)}
+
+/* ── WhatsApp ── */
+.wa{position:fixed;bottom:26px;right:26px;z-index:300;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);animation:wap 3s ease-in-out infinite;transition:transform var(--dur)}
+.wa:hover{transform:scale(1.1);animation:none}
+@keyframes wap{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,.4)}50%{box-shadow:0 4px 24px rgba(37,211,102,.65),0 0 0 7px rgba(37,211,102,.08)}}
+.wa svg{width:26px;height:26px;fill:#fff}
+
+/* ── Reveal ── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .68s var(--ease),transform .68s var(--ease)}
+.rv-l{opacity:0;transform:translateX(-26px);transition:opacity .68s var(--ease),transform .68s var(--ease)}
+.rv-r{opacity:0;transform:translateX(26px);transition:opacity .68s var(--ease),transform .68s var(--ease)}
+.rv.on,.rv-l.on,.rv-r.on{opacity:1;transform:translate(0)}
+html:not(.has-js) .rv,
+html:not(.has-js) .rv-l,
+html:not(.has-js) .rv-r{opacity:1;transform:none;transition:none}
+
+/* ── Responsive ── */
+@media(max-width:1180px){
+  .container{max-width:100%;padding:0 32px}
+  .nav-links{gap:20px}
+  .nav-right{gap:10px}
+  .nav-right .btn{padding:10px 16px!important}
+}
+@media(max-width:1024px){
+  section{padding:84px 0}
+  .pratos-grid{grid-template-columns:1fr 1fr}
+  .dep-grid{grid-template-columns:1fr 1fr}
+  .hor-grid{grid-template-columns:1fr;gap:44px}
+  .hor-col{padding:0;border:none!important}
+  .menu-items{grid-template-columns:1fr}
+  .menu-col{padding:0;border:none!important}
+  .sobre-grid,.res-grid{grid-template-columns:1fr;gap:52px}
+  .res-grid{align-items:stretch}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .nav-links,.nav-social,.nav-right{display:none}
+  .hamburger{display:flex;min-width:42px;min-height:42px;align-items:center;justify-content:center;margin-right:-8px}
+}
+@media(max-width:768px){
+  html{-webkit-text-size-adjust:100%}
+  body{width:100%;overflow-x:hidden}
+  section{padding:68px 0}
+  .container{width:100%;padding:0 20px}
+  .btn{width:100%;min-height:48px;justify-content:center;text-align:center;padding:13px 18px}
+
+  #nav{padding:12px 0;background:rgba(26,12,4,.94);backdrop-filter:blur(16px)}
+  #nav.scrolled{padding:10px 0}
+  .nav-inner{gap:12px;min-width:0}
+  .nav-logo{font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-logo img{max-width:138px;max-height:40px}
+  .mob{z-index:500;padding:72px 24px 36px;overflow-y:auto;justify-content:flex-start;gap:18px}
+  .mob a{font-size:clamp(1.55rem,8vw,2rem);text-align:center}
+  .mob .btn{font-family:var(--font-b);font-size:.85rem;max-width:280px;margin-top:10px}
+  .mob-close{top:14px;right:18px;width:44px;height:44px}
+
+  .hero{min-height:auto;align-items:flex-start}
+  .hero-bg::after{background:linear-gradient(to bottom,rgba(26,12,4,.92) 0%,rgba(26,12,4,.72) 56%,rgba(26,12,4,.90) 100%)}
+  .hero-content{padding:112px 0 56px;max-width:none;width:100%}
+  .hero-eyebrow{max-width:100%;font-size:.68rem;line-height:1.45;margin-bottom:20px;white-space:normal}
+  .hero h1{font-size:clamp(1.95rem,9.5vw,2.3rem);overflow-wrap:anywhere}
+  .hero h1 br{display:block}
+  .hero-lead{width:100%;max-width:100%;font-size:.98rem;line-height:1.72;margin-bottom:28px;overflow-wrap:anywhere}
+  .hero-btns{gap:10px;margin-bottom:34px}
+  .hero-info{display:grid;grid-template-columns:1fr;gap:14px;padding-top:24px}
+  .hi{align-items:flex-start}
+  .hi-text,.hi-text strong{overflow-wrap:anywhere}
+
+  .ribbon{padding:11px 0}
+  .ribbon-track{gap:28px;animation-duration:22s}
+  .ri{font-size:.66rem}
+
+  .sobre-grid,.res-grid{gap:38px}
+  .sobre-frame{aspect-ratio:1/1.08}
+  .sobre-badge{right:10px;bottom:10px;padding:14px 16px}
+  .sobre-feats{grid-template-columns:1fr}
+  .sf{align-items:flex-start}
+
+  .pratos-grid,.dep-grid{grid-template-columns:1fr}
+  .pratos-head,.menu-head,.dep-head{margin-bottom:38px}
+  .prato:hover,.dep:hover{transform:none}
+
+  .menu-tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;margin-bottom:32px;border-radius:6px}
+  .mtab{min-height:46px;padding:11px 10px;border-right:1px solid var(--sand);border-bottom:1px solid var(--sand);font-size:.72rem}
+  .mtab:nth-child(2n){border-right:none}
+  .mtab:nth-last-child(-n+2){border-bottom:none}
+  .mi{gap:14px;padding:18px 0}
+  .mi-info{min-width:0}
+  .mi-info h4,.mi-info p{overflow-wrap:anywhere}
+  .mi-price{font-size:1.08rem;text-align:right;max-width:42%;overflow-wrap:anywhere}
+
+  .hor-grid{gap:34px}
+  .hor-col h3{font-size:1.25rem;margin-bottom:16px}
+  .hor-row{gap:14px;align-items:flex-start}
+  .hor-day{min-width:92px;flex-shrink:0}
+  .hor-time{text-align:right;overflow-wrap:anywhere;min-width:0}
+  .mapa-placeholder{aspect-ratio:4/3;min-height:190px;text-align:center;padding:18px}
+  .morada p{overflow-wrap:anywhere}
+
+  .res-info p{font-size:.92rem}
+  .rc{align-items:flex-start;padding:12px}
+  .rc-main,.rc-sub{overflow-wrap:anywhere;word-break:break-word}
+  .form-wrap{padding:26px 18px}
+  .form-wrap h3{font-size:1.45rem;margin-bottom:20px}
+  .fg-row{grid-template-columns:1fr;gap:0}
+  .fg input,.fg select,.fg textarea{font-size:16px;min-height:46px}
+  .btn-submit{min-height:50px}
+
+  .foot-grid{grid-template-columns:1fr;gap:30px;text-align:left}
+  .foot-desc{max-width:none}
+  .foot-btm{flex-direction:column;text-align:center;align-items:center}
+  .wa{width:50px;height:50px;right:16px;bottom:16px}
+
+  .rv,.rv-l,.rv-r{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
+@media(max-width:540px){
+  .hero-content,.hero-btns,.hero-info{max-width:350px}
+}
+@media(max-width:420px){
+  section{padding:56px 0}
+  .container{padding:0 16px}
+  .hero-content{padding-top:100px}
+  .hero h1{font-size:1.95rem}
+  .hero-lead{font-size:.93rem}
+  .label{font-size:.62rem;letter-spacing:.12em}
+  .label::before{width:18px}
+  .menu-tabs{grid-template-columns:1fr}
+  .mtab,.mtab:nth-child(2n),.mtab:nth-last-child(-n+2){border-right:none;border-bottom:1px solid var(--sand)}
+  .mtab:last-child{border-bottom:none}
+  .mi{display:grid;grid-template-columns:1fr;gap:6px}
+  .mi-price{max-width:100%;text-align:left;margin-top:0}
+  .hor-row{display:grid;grid-template-columns:1fr;gap:2px}
+  .hor-day{min-width:0}
+  .hor-time{text-align:left}
+  .form-wrap{margin-left:-2px;margin-right:-2px;padding:24px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/WHATSAPP DO RESTAURANTE?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva." target="_blank" rel="noopener" class="wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">NOME DO <span>RESTAURANTE</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#pratos">Pratos</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#horarios">Horários</a></li>
+      <li><a href="#reservas">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="#" aria-label="Facebook">fb</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+      <a href="tel:TELEFONE DO RESTAURANTE" class="btn btn-primary" style="padding:10px 22px;font-size:.78rem">Ligar agora</a>
+      <a href="#reservas" class="btn btn-outline" style="padding:10px 22px;font-size:.78rem">Reservar</a>
+    </div>
+    <button class="hamburger" id="ham" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob" id="mob" role="dialog" aria-label="Menu">
+  <button class="mob-close" id="mobClose" aria-label="Fechar">✕</button>
+  <a href="#sobre">Sobre</a>
+  <a href="#pratos">Pratos</a>
+  <a href="#menu">Menu</a>
+  <a href="#horarios">Horários</a>
+  <a href="#reservas">Reservas</a>
+  <a href="#reservas" class="btn btn-primary" style="margin-top:8px">Reservar Mesa</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-photo">
+    <div class="hero-photo-placeholder">
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="35" r="18" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <path d="M20 70 Q35 55 50 65 Q65 75 80 60" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none"/>
+        <rect x="30" y="75" width="40" height="2" rx="1" fill="rgba(255,255,255,0.08)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-content rv">
+      <div class="hero-eyebrow">Bem-vindo — CIDADE DO RESTAURANTE</div>
+      <h1>Sabores autênticos<br/>da nossa <em>tradição.</em></h1>
+      <p class="hero-lead">Uma experiência gastronómica única, onde cada prato conta a história da nossa terra. Ingredientes frescos, receitas de família e hospitalidade genuína.</p>
+      <div class="hero-btns">
+        <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
+        <a href="#menu" class="btn btn-outline">Ver cardápio</a>
+      </div>
+      <div class="hero-info">
+        <div class="hi"><span class="hi-icon">📍</span><div class="hi-text"><strong>MORADA DO RESTAURANTE</strong>CIDADE DO RESTAURANTE</div></div>
+        <div class="hi"><span class="hi-icon">🕐</span><div class="hi-text"><strong>12h00 – 15h00 · 19h00 – 23h00</strong>Seg a Dom</div></div>
+        <div class="hi"><span class="hi-icon">📞</span><div class="hi-text"><strong>TELEFONE DO RESTAURANTE</strong>Reservas</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <div class="ri">Cozinha Tradicional</div><div class="rd"></div>
+    <div class="ri">Ingredientes Frescos</div><div class="rd"></div>
+    <div class="ri">Reservas Online</div><div class="rd"></div>
+    <div class="ri">Desde 2010</div><div class="rd"></div>
+    <div class="ri">Petiscos e Pratos Principais</div><div class="rd"></div>
+    <div class="ri">CIDADE DO RESTAURANTE</div><div class="rd"></div>
+    <div class="ri">Cozinha Tradicional</div><div class="rd"></div>
+    <div class="ri">Ingredientes Frescos</div><div class="rd"></div>
+    <div class="ri">Reservas Online</div><div class="rd"></div>
+    <div class="ri">Desde 2010</div><div class="rd"></div>
+    <div class="ri">Petiscos e Pratos Principais</div><div class="rd"></div>
+    <div class="ri">CIDADE DO RESTAURANTE</div><div class="rd"></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="rv-l">
+        <div class="sobre-visual">
+          <div class="sobre-frame">
+            <div class="sobre-placeholder">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:.15"><circle cx="40" cy="40" r="30" stroke="white" stroke-width="1.5"/><path d="M25 40h30M40 25v30" stroke="white" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+          <div class="sobre-badge">
+            <div class="sb-n">15+</div>
+            <div class="sb-l">anos de<br>tradição</div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-r">
+        <span class="label">A Nossa História</span>
+        <h2>Uma cozinha com <em>alma e tradição.</em></h2>
+        <div class="sobre-body" style="margin-top:18px">
+          <p>O NOME DO RESTAURANTE nasceu do amor pela cozinha tradicional portuguesa e do desejo de partilhar os sabores autênticos que nos fazem sentir em casa. Cada prato é preparado com ingredientes frescos, selecionados com cuidado todos os dias.</p>
+          <p>A nossa equipa trabalha com paixão para garantir que cada visita seja uma memória inesquecível. Venha descobrir porque somos o restaurante preferido de CIDADE DO RESTAURANTE.</p>
+        </div>
+        <div class="sobre-feats" style="margin-top:24px">
+          <div class="sf"><div class="sf-dot"></div><p>Ingredientes locais e frescos</p></div>
+          <div class="sf"><div class="sf-dot"></div><p>Receitas tradicionais</p></div>
+          <div class="sf"><div class="sf-dot"></div><p>Espaço familiar e acolhedor</p></div>
+          <div class="sf"><div class="sf-dot"></div><p>Vinho da casa seleccionado</p></div>
+        </div>
+        <div style="margin-top:28px">
+          <a href="#reservas" class="btn btn-outline-dark">Reservar uma mesa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRATOS EM DESTAQUE -->
+<section class="pratos" id="pratos">
+  <div class="container">
+    <div class="pratos-head rv">
+      <span class="label">Os Nossos Pratos</span>
+      <h2>Os favoritos da casa</h2>
+      <p>Pratos preparados com amor, tradição e os melhores ingredientes da região.</p>
+    </div>
+    <div class="pratos-grid">
+      <div class="prato rv" style="transition-delay:.05s">
+        <div class="prato-img"><div class="prato-ph ph1"><span class="prato-tag">Especialidade</span></div></div>
+        <div class="prato-body">
+          <h3>Prato Principal 1</h3>
+          <p>Descrição do prato, ingredientes principais e forma de preparação. Uma verdadeira iguaria da nossa cozinha.</p>
+          <div class="prato-price">€ 14,50</div>
+        </div>
+      </div>
+      <div class="prato rv" style="transition-delay:.1s">
+        <div class="prato-img"><div class="prato-ph ph2"><span class="prato-tag">Mais pedido</span></div></div>
+        <div class="prato-body">
+          <h3>Prato Principal 2</h3>
+          <p>Descrição do prato, ingredientes principais e forma de preparação. O favorito dos nossos clientes habituais.</p>
+          <div class="prato-price">€ 16,00</div>
+        </div>
+      </div>
+      <div class="prato rv" style="transition-delay:.15s">
+        <div class="prato-img"><div class="prato-ph ph3"><span class="prato-tag">Novidade</span></div></div>
+        <div class="prato-body">
+          <h3>Prato Principal 3</h3>
+          <p>Descrição do prato, ingredientes principais e forma de preparação. Uma nova adição ao nosso menu sazonal.</p>
+          <div class="prato-price">€ 13,50</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:44px" class="rv">
+      <a href="#menu" class="btn btn-outline-dark">Ver cardápio completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU COMPLETO -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-head rv">
+      <span class="label">Cardápio</span>
+      <h2>O nosso menu</h2>
+    </div>
+    <div class="menu-tabs rv" id="menuTabs">
+      <button class="mtab active" data-cat="entradas">Entradas</button>
+      <button class="mtab" data-cat="principais">Principais</button>
+      <button class="mtab" data-cat="sobremesas">Sobremesas</button>
+      <button class="mtab" data-cat="bebidas">Bebidas</button>
+    </div>
+    <div class="menu-cat active" id="entradas">
+      <div class="menu-items">
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Entrada 1</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 6,50</div></div>
+          <div class="mi"><div class="mi-info"><h4>Entrada 2</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 7,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Entrada 3</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 5,50</div></div>
+        </div>
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Entrada 4</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 8,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Entrada 5</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 6,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Entrada 6</h4><p>Descrição breve da entrada, ingredientes principais.</p></div><div class="mi-price">€ 7,50</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cat" id="principais">
+      <div class="menu-items">
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 1</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 14,50</div></div>
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 2</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 16,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 3</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 13,50</div></div>
+        </div>
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 4</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 18,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 5</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 15,50</div></div>
+          <div class="mi"><div class="mi-info"><h4>Prato Principal 6</h4><p>Descrição completa do prato e como é servido.</p></div><div class="mi-price">€ 12,00</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cat" id="sobremesas">
+      <div class="menu-items">
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Sobremesa 1</h4><p>Descrição da sobremesa, ingredientes e apresentação.</p></div><div class="mi-price">€ 4,50</div></div>
+          <div class="mi"><div class="mi-info"><h4>Sobremesa 2</h4><p>Descrição da sobremesa, ingredientes e apresentação.</p></div><div class="mi-price">€ 5,00</div></div>
+        </div>
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Sobremesa 3</h4><p>Descrição da sobremesa, ingredientes e apresentação.</p></div><div class="mi-price">€ 4,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Sobremesa 4</h4><p>Descrição da sobremesa, ingredientes e apresentação.</p></div><div class="mi-price">€ 5,50</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cat" id="bebidas">
+      <div class="menu-items">
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Vinho Tinto da Casa</h4><p>Vinho regional seleccionado pelo chef.</p></div><div class="mi-price">€ 3,50 / copo</div></div>
+          <div class="mi"><div class="mi-info"><h4>Vinho Branco da Casa</h4><p>Vinho regional seleccionado pelo chef.</p></div><div class="mi-price">€ 3,50 / copo</div></div>
+          <div class="mi"><div class="mi-info"><h4>Água</h4><p>Garrafa 0,5L ou 1L.</p></div><div class="mi-price">€ 1,00</div></div>
+        </div>
+        <div class="menu-col">
+          <div class="mi"><div class="mi-info"><h4>Refrigerantes</h4><p>Selecção de refrigerantes nacionais e internacionais.</p></div><div class="mi-price">€ 2,00</div></div>
+          <div class="mi"><div class="mi-info"><h4>Café / Expresso</h4><p>Café torrado da melhor qualidade.</p></div><div class="mi-price">€ 0,80</div></div>
+          <div class="mi"><div class="mi-info"><h4>Sumos Naturais</h4><p>Espremidos na hora, frescos do dia.</p></div><div class="mi-price">€ 2,50</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORÁRIOS -->
+<section class="horarios" id="horarios">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px" class="rv">
+      <span class="label" style="color:var(--gold-lt);justify-content:center">Informações</span>
+      <h2 style="font-family:var(--font-d);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--white);margin-top:8px">Onde estamos e <em style="color:var(--gold)">quando abrimos</em></h2>
+    </div>
+    <div class="hor-grid">
+      <div class="hor-col rv-l">
+        <h3>Horário de Funcionamento</h3>
+        <div class="hor-row"><span class="hor-day">Segunda</span><span class="hor-time closed">Fechado</span></div>
+        <div class="hor-row"><span class="hor-day">Terça a Sexta</span><span class="hor-time">12h–15h · 19h–23h</span></div>
+        <div class="hor-row"><span class="hor-day">Sábado</span><span class="hor-time">12h–16h · 19h–23h30</span></div>
+        <div class="hor-row"><span class="hor-day">Domingo</span><span class="hor-time">12h–16h</span></div>
+      </div>
+      <div class="hor-col rv">
+        <h3>Localização</h3>
+        <div class="mapa-placeholder">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="13" r="5" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><path d="M16 4C10.477 4 6 8.477 6 14c0 7.5 10 18 10 18s10-10.5 10-18c0-5.523-4.477-10-10-10z" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/></svg>
+          <p>Mapa — integrar Google Maps aqui</p>
+        </div>
+        <div class="morada">
+          <p><strong>MORADA DO RESTAURANTE</strong><br/>CIDADE DO RESTAURANTE</p>
+        </div>
+      </div>
+      <div class="hor-col rv-r">
+        <h3>Contactos</h3>
+        <div class="hor-row"><span class="hor-day">Telefone</span><span class="hor-time">TELEFONE DO RESTAURANTE</span></div>
+        <div class="hor-row"><span class="hor-day">WhatsApp</span><span class="hor-time">WHATSAPP DO RESTAURANTE</span></div>
+        <div class="hor-row"><span class="hor-day">Email</span><span class="hor-time" style="font-size:.76rem">EMAIL DO RESTAURANTE</span></div>
+        <div style="margin-top:24px">
+          <a href="tel:TELEFONE DO RESTAURANTE" class="btn btn-primary" style="width:100%;justify-content:center">Ligar para reservar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="container">
+    <div class="dep-head rv">
+      <span class="label">Testemunhos</span>
+      <h2>O que dizem os nossos clientes</h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep rv" style="transition-delay:.05s">
+        <div class="dep-stars">★★★★★</div>
+        <blockquote>"Excelente comida e serviço impecável. O ambiente é muito acolhedor e os pratos são autênticos. Já voltámos várias vezes e nunca nos desiludiu."</blockquote>
+        <div class="dep-foot"><div class="dep-av av1">MA</div><div><div class="dep-name">Maria A.</div><div class="dep-loc">Google · Há 2 semanas</div></div></div>
+      </div>
+      <div class="dep rv" style="transition-delay:.1s">
+        <div class="dep-stars">★★★★★</div>
+        <blockquote>"O melhor restaurante de CIDADE DO RESTAURANTE. Os ingredientes são sempre frescos e as doses são generosas. Recomendo vivamente a toda a família."</blockquote>
+        <div class="dep-foot"><div class="dep-av av2">JP</div><div><div class="dep-name">João P.</div><div class="dep-loc">TripAdvisor · Há 1 mês</div></div></div>
+      </div>
+      <div class="dep rv" style="transition-delay:.15s">
+        <div class="dep-stars">★★★★★</div>
+        <blockquote>"Uma experiência gastronómica única. A equipa é extremamente simpática e atenciosa. Os pratos chegam sempre bem apresentados e deliciosos."</blockquote>
+        <div class="dep-foot"><div class="dep-av av3">SR</div><div><div class="dep-name">Sofia R.</div><div class="dep-loc">Google · Há 3 semanas</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVAS -->
+<section class="reservas" id="reservas">
+  <div class="container">
+    <div class="res-grid">
+      <div class="rv-l">
+        <span class="label">Reservas</span>
+        <h2 style="font-family:var(--font-d);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--white);margin-bottom:16px">Reserve a sua <em style="color:var(--gold)">mesa hoje.</em></h2>
+        <p>Garanta o seu lugar e venha desfrutar de uma experiência gastronómica inesquecível. Respondemos a todas as reservas em menos de 2 horas.</p>
+        <div class="res-contact">
+          <div class="rc"><div class="rc-icon rci1">💬</div><div><div class="rc-main">WHATSAPP DO RESTAURANTE</div><div class="rc-sub">Resposta imediata</div></div></div>
+          <div class="rc"><div class="rc-icon rci2">📞</div><div><div class="rc-main">TELEFONE DO RESTAURANTE</div><div class="rc-sub">Seg–Dom · 10h–23h</div></div></div>
+          <div class="rc"><div class="rc-icon rci3">📧</div><div><div class="rc-main">EMAIL DO RESTAURANTE</div><div class="rc-sub">Resposta em até 2h</div></div></div>
+        </div>
+      </div>
+      <div class="rv-r">
+        <div class="form-wrap">
+          <h3>Fazer reserva</h3>
+          <form id="resForm" novalidate>
+            <div class="fg-row">
+              <div class="fg"><label>Nome *</label><input type="text" name="nome" placeholder="O seu nome" required/></div>
+              <div class="fg"><label>Telefone *</label><input type="tel" name="tel" placeholder="+351 900 000 000" required/></div>
+            </div>
+            <div class="fg-row">
+              <div class="fg"><label>Data *</label><input type="date" name="data" required/></div>
+              <div class="fg"><label>Hora *</label>
+                <select name="hora" required>
+                  <option value="">Selecione...</option>
+                  <option>12:00</option><option>12:30</option><option>13:00</option>
+                  <option>13:30</option><option>14:00</option><option>14:30</option>
+                  <option>19:00</option><option>19:30</option><option>20:00</option>
+                  <option>20:30</option><option>21:00</option><option>21:30</option>
+                  <option>22:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg"><label>Número de pessoas *</label>
+              <select name="pessoas" required>
+                <option value="">Selecione...</option>
+                <option>1 pessoa</option><option>2 pessoas</option><option>3 pessoas</option>
+                <option>4 pessoas</option><option>5 pessoas</option><option>6 pessoas</option>
+                <option>7-10 pessoas</option><option>Grupo +10</option>
+              </select>
+            </div>
+            <div class="fg"><label>Pedidos especiais</label><textarea name="notas" rows="3" placeholder="Alergias, aniversários, cadeira de bebé..."></textarea></div>
+            <button type="submit" class="btn-submit">Confirmar reserva</button>
+          </form>
+          <div class="form-ok" id="formOk">
+            <div style="font-size:2.5rem;margin-bottom:10px">🍽️</div>
+            <h4>Reserva recebida!</h4>
+            <p>Entraremos em contacto em breve para confirmar a sua mesa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">NOME DO <span>RESTAURANTE</span></div>
+        <p class="foot-desc">Cozinha tradicional com ingredientes frescos e receitas de família. O melhor da gastronomia portuguesa em CIDADE DO RESTAURANTE.</p>
+        <div class="foot-soc">
+          <a href="#" class="fs" aria-label="Facebook">f</a>
+          <a href="#" class="fs" aria-label="Instagram">ig</a>
+          <a href="#" class="fs" aria-label="TripAdvisor">ta</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#pratos">Os nossos pratos</a></li>
+          <li><a href="#menu">Cardápio</a></li>
+          <li><a href="#horarios">Horários</a></li>
+          <li><a href="#reservas">Reservas</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Horários</h5>
+        <ul>
+          <li><a href="#">Ter–Sex: 12h–23h</a></li>
+          <li><a href="#">Sáb: 12h–23h30</a></li>
+          <li><a href="#">Dom: 12h–16h</a></li>
+          <li><a href="#">Seg: Fechado</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contactos</h5>
+        <ul>
+          <li><a href="tel:TELEFONE DO RESTAURANTE">TELEFONE DO RESTAURANTE</a></li>
+          <li><a href="mailto:EMAIL DO RESTAURANTE">EMAIL DO RESTAURANTE</a></li>
+          <li><a href="#">MORADA DO RESTAURANTE</a></li>
+          <li><a href="#">CIDADE DO RESTAURANTE</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <p>© 2026 NOME DO RESTAURANTE · Todos os direitos reservados</p>
+      <p>Desenvolvido por <span style="color:var(--gold)">Riverside Studio</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /*
+  ==========================================================
+  PREENCHA AQUI OS DADOS DO CLIENTE
+  Troque apenas o texto entre aspas. Nao mexa no resto do codigo.
+  ==========================================================
+  */
+  const CLIENTE = {
+    nome: 'De La Calle',
+    cidade: 'Porto',
+    morada: 'Rua da Harmonia, 546',
+    telefone: '932280272',
+    whatsapp: '351932280272',
+    email: 'contacto@riversidestudio.eu',
+    instagram: 'riversidestudioporto',
+    facebook: '#',
+    tripadvisor: '#',
+    descricaoCurta: 'Hamburgueria urbana com vibe noturna e energia jovem. Smash burgers suculentos, ambiente moderno e luzes neon que transformam cada noite numa experiência.',
+    textoWhatsApp: 'Olá! Gostaria de fazer uma reserva.'
+  };
+  const VISUAL = {
+    corPrincipal: '#B3262E',
+    corPrincipalEscura: '#7D151A',
+    corPrincipalClara: '#E0444D',
+    corDestaque: '#F0B84A',
+    corDestaqueClara: '#FFD98A',
+    fundoClaro: '#0F0A08',
+    fundoSuave: '#1A0F0C',
+    fundoEscuro: '#070403',
+    cartoesFundo: '#18100D',
+    bordaSuave: '#3A2924',
+    textoEscuro: '#F5EDE6',
+    textoMedio: '#D6C6B8',
+    textoSuave: '#A89B90',
+    fonteTitulos: "'Playfair Display', Georgia, serif",
+    fonteTexto: "'DM Sans', Arial, sans-serif",
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap'
+  };
+
+  const IMAGENS = {
+    logo: '',
+    hero: 'imagens/hero.jpg',
+    sobre: 'imagens/sobre.jpg',
+    prato1: 'imagens/prato-1.jpg',
+    prato2: 'imagens/prato-2.jpg',
+    prato3: 'imagens/prato-3.jpg',
+    mapa: ''
+  };
+
+  const HERO = {
+    etiqueta: 'De La Calle, apresenta-te',
+    titulo: 'Os burgers mais suculentos<br/>de todas as ruas.',
+    descricao: 'Descubra a magia dos burgers artesanais, preparados com ingredientes frescos e uma receita que combina tradição e inovação.',
+    botaoReservar: 'Reservar mesa',
+    botaoMenu: 'Ver Menu',
+    infoMoradaTitulo: 'Rua da Harmonia, 546',
+    infoMoradaTexto: 'Porto',
+    infoHorarioTitulo: '12h00 – 15h00 · 19h00 – 23h00',
+    infoHorarioTexto: 'Seg a Dom',
+    infoTelefoneTitulo: '932280272',
+    infoTelefoneTexto: 'Reservas'
+  };
+
+  const FITA = ['Drinks','Reservas Online','Desde 2010','Porto','Hamburgueria Urbana','Smash Burgers','Ambiente Moderno','Luzes Neon','Experiência Noturna'];
+
+  const SOBRE = {
+    etiqueta: 'Sobre Nós',
+    titulo: 'Onde os amigos se juntam<br/>e as histórias começam.',
+    paragrafos: [
+      'Criada em São Paulo em 2010, dois amigos inovaram a cena dos burgers e decidiram criar um espaço onde a tradição e a inovação se encontram.',
+      'A nossa equipa trabalha com paixão para garantir que cada visita seja uma memória inesquecível. Venha descobrir porque somos o burgerspot preferido de Porto.'
+    ],
+    anosNumero: '16',
+    anosTexto: 'anos de<br>tradição',
+    diferenciais: ['Burger Dry Aged','Espaço moderno e intimista','Drinks autorais','Ingredientes frescos e de qualidade','Ambiente jovem e descontraído','Localização central no Porto'],
+    botao: 'Reservar uma mesa'
+  };
+
+  const PRATOS_SECAO = {
+    etiqueta: 'Nossas Hamburguesas',
+    titulo: 'Os favoritos da casa',
+    descricao: 'Hamburguesas artesanais feitas com ingredientes frescos e um toque de criatividade. Cada mordida é uma explosão de sabor.',
+    botao: 'Ver cardápio completo'
+  };
+
+  const PRATOS_DESTAQUE = [
+    {tag:'Especialidade',nome:'La Doble Callejera',descricao:'Doble smash burger com queijo cheddar derretido em camadas, cebola caramelizada lentamente e molho especial da casa. Suculento, intenso e com aquele toque street que marca presença.',preco:'€ 14,50'},
+    {tag:'Mais pedido',nome:'La Cremosa Salvaje',descricao:'Explosão de sabor com carne grelhada, bacon crocante e um molho cremoso intenso que escorre por todo o burger. Pesado, indulgente e feito para quem quer sentir cada mordida.',preco:'€ 16,00'},
+    {tag:'Novidade',nome:'La Clásica Rebelde',descricao:'O clássico elevado ao nível De La Calle. Carne suculenta, cheddar, alface fresca, tomate e um blend de molhos que equilibra perfeitamente sabor e textura.',preco:'€ 13,50'}
+  ];
+
+  const MENU = {
+    etiqueta: 'Cardápio',
+    titulo: 'O nosso menu',
+    entradas: [
+      ['Dadinho de Tapioca','Dadinho de tapioca crocante, perfeito para começar o jantar.','€ 6,50'],
+      ['Fritas da Casa','Batatas reais servidas com pastrami, picles e maionese da casa.','€ 9,00'],
+      ['Spicy Wings','Asas de frango picantes com molho especial.','€ 10,50'],
+      ['Legumes Asados','Legumes assados com azeite de oliva e ervas aromáticas.','€ 7,50'],
+      ['Ovos Rotos','Ovos rotos cremosos com batata e toque da casa.','€ 8,50'],
+      ['Tábua de Queijos e Enchidos','Seleção de queijos e enchidos artesanais, pão rústico e compotas.','€ 11,00']
+    ],
+    principais: [
+      ['La Doble Callejera','Doble smash burger com queijo cheddar derretido em camadas, cebola caramelizada lentamente e molho especial da casa.','€ 14,50'],
+      ['La Cremosa Salvaje','Carne grelhada, bacon crocante e molho cremoso intenso. Pesado, indulgente e feito para sentir cada mordida.','€ 16,00'],
+      ['La Clásica Rebelde','Carne suculenta, cheddar, alface fresca, tomate e blend de molhos com equilíbrio perfeito.','€ 13,50'],
+      ['La Calle Veggie','Hambúrguer vegetariano com grão-de-bico, quinoa e especiarias, servido com alface, tomate e molho especial.','€ 12,00'],
+      ['El Dorado','Milanesa de frango crocante, queijo derretido, alface fresca, tomate e molho especial da casa.','€ 13,50'],
+      ['Choripan','Linguiça argentina grelhada em pão crocante com chimichurri e maionese de alho.','€ 11,00']
+    ],
+    sobremesas: [
+      ['La Calle Cheesecake','Cheesecake cremosa com base crocante e calda quente de frutos vermelhos.','€ 4,50'],
+      ['El Brownie Prohibido','Brownie intenso de chocolate, quente por dentro, servido com gelado de baunilha e calda derretida.','€ 5,00'],
+      ['La Tentación Dulce de Leche','Camadas de doce de leite cremoso com chantilly leve e toque de biscoito crocante.','€ 4,00'],
+      ['Mousse de Chocolate','Mousse rica de chocolate com textura suave e final intenso.','€ 4,00'],
+      ['Pudim de Leite','Pudim clássico, cremoso e finalizado com calda de caramelo.','€ 4,50'],
+      ['Panqueca com Gelado','Panqueca servida com gelado de baunilha e calda de chocolate.','€ 4,00']
+    ],
+    bebidas: [
+      ['Lagunitas IPA','Cerveja IPA intensa e aromática.','€ 3,50'],
+      ['Refrigerantes','Seleção de refrigerantes.','€ 2,50'],
+      ['Sumos Naturais','Sumos frescos preparados no dia.','€ 2,50'],
+      ['El Fuego Ahumado','Drink intenso com notas defumadas, leve picância e final quente.','€ 12,00'],
+      ['La Calle Spritz','Drink refrescante com toque cítrico de laranja, notas amargas elegantes e final levemente adocicado.','€ 10,00'],
+      ['Carajillo','Drink intenso com toque de café e leite, ideal para terminar a noite.','€ 10,00']
+    ]
+  };
+
+  const INFORMACOES = {
+    etiqueta:'Informações',
+    titulo:'Onde estamos e <em style="color:var(--gold)">quando abrimos</em>',
+    horarioTitulo:'Horário de Funcionamento',
+    horarios:[['Segunda','Fechado',true],['Terça a Sexta','12h–15h · 19h–23h',false],['Sábado','12h–16h · 19h–23h30',false],['Domingo','12h–16h',false]],
+    localizacaoTitulo:'Localização',
+    mapaTexto:'Mapa — integrar Google Maps aqui',
+    contactosTitulo:'Contactos',
+    botaoLigar:'Ligar para reservar'
+  };
+
+  const DEPOIMENTOS = {
+    etiqueta:'Testemunhos',
+    titulo:'O que dizem os nossos clientes',
+    items:[
+      ['Maria A.','Google · Há 2 semanas','Fui recentemente com meus amigos e a experiência foi impecável. O ambiente é muito moderno e o atendimento é excelente.'],
+      ['João P.','TripAdvisor · Há 1 mês','A melhor hamburgueria do Porto. Os burgers são incríveis, suculentos e cheios de sabor. O ambiente é perfeito para uma noite descontraída.'],
+      ['Sofia R.','Google · Há 3 semanas','Vocês têm que experimentar o La Doble Callejera. A combinação de sabores é perfeita e a qualidade dos ingredientes aparece em cada mordida.']
+    ]
+  };
+
+  const RESERVAS = {
+    etiqueta:'Reservas',
+    titulo:'Reserve a sua <em style="color:var(--gold)">mesa hoje.</em>',
+    texto:'Garanta o seu lugar e venha desfrutar de uma hamburguesa deliciosa. Respondemos a todas as reservas em menos de 2 horas.',
+    whatsappSub:'Resposta imediata',
+    telefoneSub:'Seg–Dom · 10h–23h',
+    emailSub:'Resposta em até 2h',
+    formularioTitulo:'Fazer reserva',
+    botaoFormulario:'Confirmar reserva',
+    sucessoTitulo:'Reserva recebida!',
+    sucessoTexto:'Entraremos em contacto em breve para confirmar a sua mesa.'
+  };
+
+  const RODAPE = {
+    descricao:'Hamburgueria urbana com vibe noturna e energia jovem. Smash burgers suculentos, ambiente moderno e luzes neon que transformam cada noite numa experiência.',
+    credito:'Desenvolvido por Riverside Studio'
+  };
+
+  /*
+  Exemplo rapido:
+  nome: 'Restaurante Flor do Rio',
+  cidade: 'Coimbra',
+  morada: 'Rua da Ponte 24',
+  telefone: '+351 912 345 678',
+  whatsapp: '351912345678',
+  email: 'reservas@flordorio.pt',
+  instagram: 'https://instagram.com/flordorio'
+  */
+
+  const limparTelefone = valor => String(valor || '').replace(/[^\d+]/g,'');
+  const whatsappNumero = String(CLIENTE.whatsapp || '').replace(/\D/g,'');
+  const dados = {
+    'NOME DO RESTAURANTE': CLIENTE.nome,
+    'CIDADE DO RESTAURANTE': CLIENTE.cidade,
+    'MORADA DO RESTAURANTE': CLIENTE.morada,
+    'TELEFONE DO RESTAURANTE': CLIENTE.telefone,
+    'WHATSAPP DO RESTAURANTE': CLIENTE.whatsapp,
+    'EMAIL DO RESTAURANTE': CLIENTE.email
+  };
+
+  const trocarTextos = root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      let texto = node.nodeValue;
+      Object.entries(dados).forEach(([de,para])=>{ texto = texto.split(de).join(para); });
+      node.nodeValue = texto;
+    });
+  };
+
+  const trocarAtributos = () => {
+    document.title = CLIENTE.nome;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc) metaDesc.setAttribute('content', `${CLIENTE.nome} - Restaurante em ${CLIENTE.cidade}. Reservas: ${CLIENTE.telefone}`);
+
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.href=`tel:${limparTelefone(CLIENTE.telefone)}`);
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.href=`mailto:${CLIENTE.email}`);
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
+      a.href=`https://wa.me/${whatsappNumero}?text=${encodeURIComponent(CLIENTE.textoWhatsApp)}`;
+    });
+
+    const sociais = [
+      ['Facebook', CLIENTE.facebook],
+      ['Instagram', CLIENTE.instagram],
+      ['TripAdvisor', CLIENTE.tripadvisor]
+    ];
+    sociais.forEach(([label,url])=>{
+      document.querySelectorAll(`a[aria-label="${label}"]`).forEach(a=>a.href=url || '#');
+    });
+  };
+
+  const preencher = valor => {
+    let texto = String(valor ?? '');
+    Object.entries(dados).forEach(([de,para])=>{ texto = texto.split(de).join(para); });
+    return texto;
+  };
+
+  const setTexto = (seletor, texto) => {
+    const el = document.querySelector(seletor);
+    if(el && texto !== undefined) el.textContent = preencher(texto);
+  };
+
+  const setHtml = (seletor, html) => {
+    const el = document.querySelector(seletor);
+    if(el && html !== undefined) el.innerHTML = preencher(html);
+  };
+
+  const caminhosImagem = url => {
+    if(!url) return [];
+    const limpo = String(url).trim();
+    if(/^(https?:)?\/\//i.test(limpo) || limpo.startsWith('data:')) return [limpo];
+    const arquivo = limpo.split('/').pop();
+    return [...new Set([limpo, `./${limpo}`, arquivo, `./${arquivo}`])];
+  };
+
+  const carregarImagem = (url, pronto) => {
+    const caminhos = caminhosImagem(url);
+    let i = 0;
+    const tentar = () => {
+      const atual = caminhos[i++];
+      if(!atual) return;
+      const img = new Image();
+      img.onload = () => pronto(atual);
+      img.onerror = tentar;
+      img.src = atual;
+    };
+    tentar();
+  };
+
+  const aplicarImagem = (seletor, url, overlay='') => {
+    const el = document.querySelector(seletor);
+    if(!el || !url) return;
+    carregarImagem(url, caminho => {
+      el.classList.add('tem-foto');
+      el.style.backgroundImage = `${overlay ? overlay + ',' : ''}url("${caminho}")`;
+    });
+  };
+
+  const aplicarVisual = () => {
+    const r = document.documentElement;
+    r.style.setProperty('--red', VISUAL.corPrincipal);
+    r.style.setProperty('--red-dk', VISUAL.corPrincipalEscura);
+    r.style.setProperty('--red-lt', VISUAL.corPrincipalClara);
+    r.style.setProperty('--gold', VISUAL.corDestaque);
+    r.style.setProperty('--gold-lt', VISUAL.corDestaqueClara);
+    r.style.setProperty('--cream', VISUAL.fundoClaro);
+    r.style.setProperty('--warm', VISUAL.fundoSuave);
+    r.style.setProperty('--dark', VISUAL.fundoEscuro);
+    r.style.setProperty('--surface', VISUAL.cartoesFundo || '#FFFFFF');
+    r.style.setProperty('--sand', VISUAL.bordaSuave || '#E0D3C4');
+    r.style.setProperty('--brown', VISUAL.textoEscuro);
+    r.style.setProperty('--brown-md', VISUAL.textoMedio);
+    r.style.setProperty('--gray', VISUAL.textoSuave);
+    r.style.setProperty('--font-d', VISUAL.fonteTitulos);
+    r.style.setProperty('--font-b', VISUAL.fonteTexto);
+
+    const fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
+    if(fontLink && VISUAL.googleFontsUrl) fontLink.href = VISUAL.googleFontsUrl;
+  };
+
+  const aplicarMarca = () => {
+    if(IMAGENS.logo){
+      carregarImagem(IMAGENS.logo, caminho => {
+        const alt = preencher(CLIENTE.nome);
+        document.querySelectorAll('.nav-logo,.foot-logo').forEach(el=>{
+          el.innerHTML = `<img src="${caminho}" alt="${alt}">`;
+        });
+      });
+      return;
+    }
+    const partes = preencher(CLIENTE.nome).trim().split(/\s+/);
+    const destaque = partes.length > 1 ? partes.pop() : '';
+    const base = partes.join(' ') || preencher(CLIENTE.nome);
+    const logoHtml = destaque ? `${base} <span>${destaque}</span>` : base;
+    document.querySelectorAll('.nav-logo,.foot-logo').forEach(el=>{ el.innerHTML = logoHtml; });
+  };
+
+  const aplicarHero = () => {
+    setTexto('.hero-eyebrow', HERO.etiqueta);
+    setHtml('.hero h1', HERO.titulo);
+    setTexto('.hero-lead', HERO.descricao);
+    setTexto('.hero-btns .btn-primary', HERO.botaoReservar);
+    setTexto('.hero-btns .btn-outline', HERO.botaoMenu);
+    const infos = document.querySelectorAll('.hero-info .hi');
+    const heroInfos = [
+      [HERO.infoMoradaTitulo, HERO.infoMoradaTexto],
+      [HERO.infoHorarioTitulo, HERO.infoHorarioTexto],
+      [HERO.infoTelefoneTitulo, HERO.infoTelefoneTexto]
+    ];
+    infos.forEach((item,i)=>{
+      const strong = item.querySelector('strong');
+      const text = item.querySelector('.hi-text');
+      if(strong) strong.textContent = preencher(heroInfos[i][0]);
+      if(text){
+        strong && text.removeChild(strong);
+        text.textContent = preencher(heroInfos[i][1]);
+        strong && text.prepend(strong);
+      }
+    });
+  };
+
+  const aplicarFita = () => {
+    const track = document.querySelector('.ribbon-track');
+    if(!track || !Array.isArray(FITA)) return;
+    const itens = [...FITA, ...FITA];
+    track.innerHTML = itens.map(item=>`<div class="ri">${preencher(item)}</div><div class="rd"></div>`).join('');
+  };
+
+  const aplicarSobre = () => {
+    setTexto('.sobre-text .label', SOBRE.etiqueta);
+    setHtml('.sobre-text h2', SOBRE.titulo);
+    const body = document.querySelector('.sobre-body');
+    if(body && Array.isArray(SOBRE.paragrafos)){
+      body.innerHTML = SOBRE.paragrafos.map(p=>`<p>${preencher(p)}</p>`).join('');
+    }
+    setHtml('.sb-n', SOBRE.anosNumero);
+    setHtml('.sb-l', SOBRE.anosTexto);
+    document.querySelectorAll('.sobre-feats .sf p').forEach((el,i)=>{
+      if(SOBRE.diferenciais[i]) el.textContent = preencher(SOBRE.diferenciais[i]);
+    });
+    setTexto('.sobre-text .btn', SOBRE.botao);
+  };
+
+  const aplicarPratosDestaque = () => {
+    setTexto('.pratos-head .label', PRATOS_SECAO.etiqueta);
+    setTexto('.pratos-head h2', PRATOS_SECAO.titulo);
+    setTexto('.pratos-head p', PRATOS_SECAO.descricao);
+    setTexto('.pratos .btn', PRATOS_SECAO.botao);
+
+    document.querySelectorAll('.pratos-grid .prato').forEach((card,i)=>{
+      const prato = PRATOS_DESTAQUE[i];
+      if(!prato) return;
+      setTextoCard(card,'.prato-tag',prato.tag);
+      setTextoCard(card,'.prato-body h3',prato.nome);
+      setTextoCard(card,'.prato-body p',prato.descricao);
+      setTextoCard(card,'.prato-price',prato.preco);
+    });
+  };
+
+  const setTextoCard = (root,seletor,texto) => {
+    const el = root.querySelector(seletor);
+    if(el && texto !== undefined) el.textContent = preencher(texto);
+  };
+
+  const aplicarMenu = () => {
+    setTexto('.menu-head .label', MENU.etiqueta);
+    setTexto('.menu-head h2', MENU.titulo);
+    ['entradas','principais','sobremesas','bebidas'].forEach(categoria=>{
+      const linhas = document.querySelectorAll(`#${categoria} .mi`);
+      const itens = MENU[categoria] || [];
+      linhas.forEach((linha,i)=>{
+        const item = itens[i];
+        if(!item) return;
+        setTextoCard(linha,'h4',item[0]);
+        setTextoCard(linha,'p',item[1]);
+        setTextoCard(linha,'.mi-price',item[2]);
+      });
+    });
+  };
+
+  const aplicarInformacoes = () => {
+    setTexto('#horarios .label', INFORMACOES.etiqueta);
+    setHtml('#horarios h2', INFORMACOES.titulo);
+    const cols = document.querySelectorAll('#horarios .hor-col');
+    if(cols[0]) setTextoCard(cols[0],'h3',INFORMACOES.horarioTitulo);
+    if(cols[1]) setTextoCard(cols[1],'h3',INFORMACOES.localizacaoTitulo);
+    if(cols[2]) setTextoCard(cols[2],'h3',INFORMACOES.contactosTitulo);
+    setTexto('.mapa-placeholder p', INFORMACOES.mapaTexto);
+    setTexto('#horarios .btn', INFORMACOES.botaoLigar);
+
+    document.querySelectorAll('#horarios .hor-col:first-child .hor-row').forEach((linha,i)=>{
+      const item = INFORMACOES.horarios[i];
+      if(!item) return;
+      setTextoCard(linha,'.hor-day',item[0]);
+      setTextoCard(linha,'.hor-time',item[1]);
+      const hora = linha.querySelector('.hor-time');
+      if(hora) hora.classList.toggle('closed', Boolean(item[2]));
+    });
+  };
+
+  const aplicarDepoimentos = () => {
+    setTexto('.dep-head .label', DEPOIMENTOS.etiqueta);
+    setTexto('.dep-head h2', DEPOIMENTOS.titulo);
+    document.querySelectorAll('.dep-grid .dep').forEach((card,i)=>{
+      const item = DEPOIMENTOS.items[i];
+      if(!item) return;
+      setTextoCard(card,'blockquote',`"${preencher(item[2])}"`);
+      setTextoCard(card,'.dep-name',item[0]);
+      setTextoCard(card,'.dep-loc',item[1]);
+      const av = card.querySelector('.dep-av');
+      if(av) av.textContent = preencher(item[0]).split(/\s+/).map(p=>p[0]).join('').slice(0,2).toUpperCase();
+    });
+  };
+
+  const aplicarReservas = () => {
+    setTexto('.reservas .label', RESERVAS.etiqueta);
+    setHtml('.reservas h2', RESERVAS.titulo);
+    setTexto('.reservas .rv-l > p', RESERVAS.texto);
+    const subs = document.querySelectorAll('.rc-sub');
+    if(subs[0]) subs[0].textContent = preencher(RESERVAS.whatsappSub);
+    if(subs[1]) subs[1].textContent = preencher(RESERVAS.telefoneSub);
+    if(subs[2]) subs[2].textContent = preencher(RESERVAS.emailSub);
+    setTexto('.form-wrap h3', RESERVAS.formularioTitulo);
+    setTexto('.btn-submit', RESERVAS.botaoFormulario);
+    setTexto('.form-ok h4', RESERVAS.sucessoTitulo);
+    setTexto('.form-ok p', RESERVAS.sucessoTexto);
+  };
+
+  const aplicarRodape = () => {
+    setTexto('.foot-desc', RODAPE.descricao);
+    const credito = document.querySelector('.foot-btm p:last-child');
+    if(credito) credito.innerHTML = preencher(RODAPE.credito).replace('Riverside Studio','<span style="color:var(--gold)">Riverside Studio</span>');
+  };
+
+  const aplicarImagens = () => {
+    aplicarImagem('.hero-photo-placeholder', IMAGENS.hero, 'linear-gradient(rgba(26,12,4,.50),rgba(26,12,4,.50))');
+    aplicarImagem('.sobre-placeholder', IMAGENS.sobre, 'linear-gradient(rgba(42,21,8,.10),rgba(42,21,8,.10))');
+    aplicarImagem('.ph1', IMAGENS.prato1, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.ph2', IMAGENS.prato2, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.ph3', IMAGENS.prato3, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.mapa-placeholder', IMAGENS.mapa, 'linear-gradient(rgba(26,12,4,.42),rgba(26,12,4,.42))');
+  };
+
+  trocarTextos(document.body);
+  trocarAtributos();
+  aplicarVisual();
+  aplicarMarca();
+  aplicarHero();
+  aplicarFita();
+  aplicarSobre();
+  aplicarPratosDestaque();
+  aplicarMenu();
+  aplicarInformacoes();
+  aplicarDepoimentos();
+  aplicarReservas();
+  aplicarRodape();
+  aplicarImagens();
+
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50),{passive:true});
+
+  const ham=document.getElementById('ham');
+  const mob=document.getElementById('mob');
+  const mc=document.getElementById('mobClose');
+  const openM=()=>{mob.classList.add('open');document.body.style.overflow='hidden';ham.setAttribute('aria-expanded','true')};
+  const shutM=()=>{mob.classList.remove('open');document.body.style.overflow='';ham.setAttribute('aria-expanded','false')};
+  ham.addEventListener('click',openM);
+  mc.addEventListener('click',shutM);
+  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',shutM));
+  document.addEventListener('keydown',e=>e.key==='Escape'&&shutM());
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const href=a.getAttribute('href');
+      if(!href||href==='#')return;
+      const t=document.querySelector(href);
+      if(!t)return;
+      e.preventDefault();
+      window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-76,behavior:'smooth'});
+    });
+  });
+
+  document.querySelectorAll('.mtab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.menu-cat').forEach(c=>c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.cat).classList.add('active');
+    });
+  });
+
+  const revealEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+    },{threshold:.1,rootMargin:'0px 0px -32px 0px'});
+    revealEls.forEach(el=>io.observe(el));
+  }else{
+    revealEls.forEach(el=>el.classList.add('on'));
+  }
+
+  const form=document.getElementById('resForm');
+  const ok=document.getElementById('formOk');
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    let valid=true;
+    form.querySelectorAll('[required]').forEach(f=>{
+      const ok2=f.value.trim()!=='';
+      f.style.borderColor=ok2?'':'#7A1E1E';
+      if(!ok2)valid=false;
+    });
+    if(!valid)return;
+    const fd = new FormData(form);
+    const msg = [
+      `Olá, ${CLIENTE.nome}! Gostaria de fazer uma reserva.`,
+      '',
+      `Nome: ${fd.get('nome')}`,
+      `Telefone: ${fd.get('tel')}`,
+      `Data: ${fd.get('data')}`,
+      `Hora: ${fd.get('hora')}`,
+      `Pessoas: ${fd.get('pessoas')}`,
+      fd.get('notas') ? `Pedidos especiais: ${fd.get('notas')}` : ''
+    ].filter(Boolean).join('\n');
+    if(whatsappNumero){
+      window.open(`https://wa.me/${whatsappNumero}?text=${encodeURIComponent(msg)}`,'_blank','noopener');
+    }
+    form.style.display='none';
+    ok.style.display='block';
+  });
+  form.querySelectorAll('input,select,textarea').forEach(f=>{
+    f.addEventListener('input',()=>f.style.borderColor='');
+  });
+
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    revealEls.forEach(el=>{el.style.transition='none';el.classList.add('on')});
+  }
+})();
+</script>
+</body>
+</html>
