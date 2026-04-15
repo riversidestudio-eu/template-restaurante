@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>De La Calle.</title>
+<title>NOME DO RESTAURANTE</title>
 <meta name="description" content="NOME DO RESTAURANTE — Restaurante em CIDADE DO RESTAURANTE. Reservas: TELEFONE DO RESTAURANTE"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -12,6 +12,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
+  --surface:#FFFFFF;
   --cream:#FAF6EF;
   --warm:#F2EBE0;
   --sand:#E0D3C4;
@@ -72,7 +73,7 @@ section{padding:96px 0}
 .nav-social a{font-size:.8rem;color:rgba(255,255,255,.55);transition:color var(--dur)}
 .nav-social a:hover{color:var(--gold)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:all .3s}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--surface);border-radius:2px;transition:all .3s}
 .mob{display:none;position:fixed;inset:0;z-index:199;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;gap:24px}
 .mob.open{display:flex}
 .mob-close{position:absolute;top:20px;right:28px;background:none;border:none;font-size:1.5rem;color:rgba(255,255,255,.6);cursor:pointer}
@@ -108,12 +109,12 @@ section{padding:96px 0}
 .rd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.35);flex-shrink:0}
 
 /* ── SOBRE ── */
-.sobre{background:var(--white)}
+.sobre{background:var(--surface)}
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .sobre-visual{position:relative}
 .sobre-frame{aspect-ratio:4/5;border-radius:8px;overflow:hidden;box-shadow:var(--sh-lg);position:relative}
 .sobre-placeholder{width:100%;height:100%;background:linear-gradient(145deg,#3A1A0A,#6A3018 50%,#8A4820);display:flex;align-items:center;justify-content:center}
-.sobre-badge{position:absolute;bottom:-16px;right:-16px;background:var(--white);border-radius:8px;padding:18px 22px;box-shadow:var(--sh-lg);border:1px solid rgba(42,21,8,.06);text-align:center}
+.sobre-badge{position:absolute;bottom:-16px;right:-16px;background:var(--surface);border-radius:8px;padding:18px 22px;box-shadow:var(--sh-lg);border:1px solid rgba(42,21,8,.06);text-align:center}
 .sb-n{font-family:var(--font-d);font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
 .sb-l{font-size:.7rem;color:var(--gray);margin-top:4px}
 .sobre-text h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:18px}
@@ -131,7 +132,7 @@ section{padding:96px 0}
 .pratos-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:10px}
 .pratos-head p{font-size:1rem;color:var(--gray);max-width:480px;margin:0 auto}
 .pratos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.prato{background:var(--white);border-radius:8px;overflow:hidden;box-shadow:var(--sh);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);cursor:default}
+.prato{background:var(--surface);border-radius:8px;overflow:hidden;box-shadow:var(--sh);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);cursor:default}
 .prato:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
 .prato-img{aspect-ratio:4/3;overflow:hidden;position:relative}
 .prato-ph{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:flex-start;padding:14px}
@@ -145,7 +146,7 @@ section{padding:96px 0}
 .prato-price{font-family:var(--font-d);font-size:1.4rem;font-weight:700;color:var(--red)}
 
 /* ── MENU ── */
-.menu-section{background:var(--white)}
+.menu-section{background:var(--surface)}
 .menu-head{text-align:center;margin-bottom:56px}
 .menu-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:8px}
 .menu-tabs{display:flex;justify-content:center;gap:0;margin-bottom:48px;border:1px solid var(--sand);border-radius:6px;overflow:hidden;width:fit-content;margin:0 auto 48px}
@@ -189,7 +190,7 @@ section{padding:96px 0}
 .dep-head{text-align:center;margin-bottom:56px}
 .dep-head h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--brown);margin-bottom:8px}
 .dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.dep{background:var(--white);border-radius:8px;padding:30px 26px;box-shadow:var(--sh);transition:transform var(--dur),box-shadow var(--dur);cursor:default}
+.dep{background:var(--surface);border-radius:8px;padding:30px 26px;box-shadow:var(--sh);transition:transform var(--dur),box-shadow var(--dur);cursor:default}
 .dep:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
 .dep-stars{color:#C88840;font-size:.85rem;letter-spacing:3px;margin-bottom:14px}
 .dep blockquote{font-family:var(--font-d);font-size:1.05rem;font-style:italic;color:var(--brown);line-height:1.65;margin-bottom:20px}
@@ -217,7 +218,7 @@ section{padding:96px 0}
 .rci3{background:rgba(255,255,255,.08)}
 .rc-main{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.85)}
 .rc-sub{font-size:.74rem;color:rgba(255,255,255,.4);margin-top:1px}
-.form-wrap{background:var(--white);border-radius:8px;padding:40px}
+.form-wrap{background:var(--surface);border-radius:8px;padding:40px}
 .form-wrap h3{font-family:var(--font-d);font-size:1.7rem;font-weight:700;color:var(--brown);margin-bottom:24px}
 .fg{margin-bottom:14px}
 .fg label{display:block;font-size:.72rem;font-weight:600;color:var(--brown);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
@@ -816,22 +817,23 @@ html:not(.has-js) .rv-r{opacity:1;transform:none;transition:none}
     textoWhatsApp: 'Olá! Gostaria de fazer uma reserva.'
   };
   const VISUAL = {
-    corPrincipal: '#6E1B1B',
-    corPrincipalEscura: '#4A0F0F',
-    corPrincipalClara: '#9C2C2C',
-    corDestaque: '#C6A46C',
-    corDestaqueClara: '#E0C48A',
-    fundoClaro: '#0F0A08',
-    fundoSuave: '#1A0F0C',
-    fundoEscuro: '#241512',
-    textoEscuro: '#F5EDE6',
-    textoMedio: '#D6C6B8',
-    textoSuave: '#A89B90',
-    fonteTitulos: "'Playfair Display', Georgia, serif",
-    fonteTexto: "'DM Sans', Arial, sans-serif",
-    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap'
-  };
-
+  corPrincipal: '#B3262E',
+  corPrincipalEscura: '#7D151A',
+  corPrincipalClara: '#E0444D',
+  corDestaque: '#F0B84A',
+  corDestaqueClara: '#FFD98A',
+  fundoClaro: '#0F0A08',
+  fundoSuave: '#1A0F0C',
+  fundoEscuro: '#070403',
+  cartoesFundo: '#18100D',
+  bordaSuave: '#3A2924',
+  textoEscuro: '#F5EDE6',
+  textoMedio: '#D6C6B8',
+  textoSuave: '#A89B90',
+  fonteTitulos: "'Playfair Display', Georgia, serif",
+  fonteTexto: "'DM Sans', Arial, sans-serif",
+  googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap'
+};
   const IMAGENS = {
     hero: 'imagens/hero.jpg',
     sobre: 'imagens/sobre.jpg',
@@ -1042,6 +1044,9 @@ html:not(.has-js) .rv-r{opacity:1;transform:none;transition:none}
     r.style.setProperty('--gray', VISUAL.textoSuave);
     r.style.setProperty('--font-d', VISUAL.fonteTitulos);
     r.style.setProperty('--font-b', VISUAL.fonteTexto);
+    r.style.setProperty('--surface', VISUAL.cartoesFundo || '#FFFFFF');
+r.style.setProperty('--sand', VISUAL.bordaSuave || '#E0D3C4');
+
 
     const fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
     if(fontLink && VISUAL.googleFontsUrl) fontLink.href = VISUAL.googleFontsUrl;
