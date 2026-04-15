@@ -86,6 +86,8 @@ section{padding:96px 0}
 .hero-photo{position:absolute;inset:0;z-index:0}
 .hero-photo-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#3A1A0A 0%,#5C2C10 35%,#8A4820 65%,#4A2010 100%);display:flex;align-items:center;justify-content:center}
 .hero-photo-placeholder svg{opacity:.08;width:200px;height:200px}
+.tem-foto{background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important}
+.tem-foto svg{display:none}
 .hero-content{position:relative;z-index:1;padding:120px 0 80px;max-width:680px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(200,169,110,.12);border:1px solid rgba(200,169,110,.25);color:var(--gold-lt);padding:8px 16px;border-radius:99px;font-size:.75rem;font-weight:500;margin-bottom:26px;letter-spacing:.06em}
 .hero h1{font-size:clamp(2.8rem,6vw,5.2rem);font-weight:700;color:var(--white);line-height:1.06;margin-bottom:20px}
@@ -801,18 +803,153 @@ html:not(.has-js) .rv-r{opacity:1;transform:none;transition:none}
   ==========================================================
   */
   const CLIENTE = {
-    nome: 'NOME DO RESTAURANTE',
-    cidade: 'CIDADE DO RESTAURANTE',
-    morada: 'MORADA DO RESTAURANTE',
-    telefone: 'TELEFONE DO RESTAURANTE',
-    whatsapp: '351900000000',
-    email: 'EMAIL DO RESTAURANTE',
-    instagram: '#',
+    nome: 'De La Calle',
+    cidade: 'Porto',
+    morada: 'Rua da Harmonia, 546',
+    telefone: '932280272',
+    whatsapp: '351932280272',
+    email: 'contacto@riversidestudio.eu',
+    instagram: 'riversidestudioporto',
     facebook: '#',
     tripadvisor: '#',
-    descricaoCurta: 'Restaurante em CIDADE DO RESTAURANTE com cozinha tradicional, ingredientes frescos e ambiente acolhedor.',
+    descricaoCurta: 'Hamburgueria urbana com vibe noturna e energia jovem. Smash burgers suculentos, ambiente moderno e luzes neon que transformam cada noite numa experiência..',
     textoWhatsApp: 'Olá! Gostaria de fazer uma reserva.'
   };
+  const VISUAL = {
+    corPrincipal: '#6E1B1B',
+    corPrincipalEscura: '#4A0F0F',
+    corPrincipalClara: '#9C2C2C',
+    corDestaque: '#C6A46C',
+    corDestaqueClara: '#E0C48A',
+    fundoClaro: '#0F0A08',
+    fundoSuave: '#1A0F0C',
+    fundoEscuro: '#241512',
+    textoEscuro: '#F5EDE6',
+    textoMedio: '#D6C6B8',
+    textoSuave: '#A89B90',
+    fonteTitulos: "'Playfair Display', Georgia, serif",
+    fonteTexto: "'DM Sans', Arial, sans-serif",
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap'
+  };
+
+  const IMAGENS = {
+    hero: 'hero.jpg',
+    sobre: 'sobre.jpg',
+    prato1: 'prato1.jpg',
+    prato2: 'prato2.jpg',
+    prato3: 'prato3.jpg',
+    mapa: 'mapa.jpg'
+  };
+
+  const HERO = {
+    etiqueta: 'De La Calle, apresenta-te',
+    titulo: 'Os burgers mais suculentos de todas as ruas.</em>',
+    descricao: 'Descubra a magia dos burgers artesanais, preparados com ingredientes frescos e uma receita que combina tradição e inovação.',
+    botaoReservar: 'Reservar mesa',
+    botaoMenu: 'Ver Menu',
+    infoMoradaTitulo: 'Rua da Harmonia, 546',
+    infoMoradaTexto: 'Porto',
+    infoHorarioTitulo: '12h00 – 15h00 · 19h00 – 23h00',
+    infoHorarioTexto: 'Seg a Dom',
+    infoTelefoneTitulo: '932280272',
+    infoTelefoneTexto: 'Reservas'
+  };
+
+  const FITA = ['Drinks','Reservas Online','Desde 2010','Porto','Hamburgueria Urbana','Smash Burgers','Ambiente Moderno','Luzes Neon','Experiência Noturna'];
+
+  const SOBRE = {
+    etiqueta: 'Sobre Nós',
+    titulo: 'Onde os amigos se juntam e as histórias começam.</em>',
+    paragrafos: [
+      'Criada em São Paulo em 2010, dois amigos inovaram a cena dos burgers e decidiram criar um espaço onde a tradição e a inovação se encontram.',
+      'A nossa equipa trabalha com paixão para garantir que cada visita seja uma memória inesquecível. Venha descobrir porque somos o burgerspot preferido de Porto.'
+    ],
+    anosNumero: '16',
+    anosTexto: 'anos de<br>tradição',
+    diferenciais: ['Burger Dry Aged','Espaço Moderno e intimista','Drinks Autorais','Ingredientes frescos e de qualidade','Ambiente jovem e descontraído','Localização central no Porto'],
+        botao: 'Reservar uma mesa'
+  };
+
+  const PRATOS_SECAO = {
+    etiqueta: 'Os Nossos Pratos',
+    titulo: 'Os favoritos da casa',
+    descricao: 'Pratos preparados com amor, tradição e os melhores ingredientes da região.',
+    botao: 'Ver cardápio completo'
+  };
+
+  const PRATOS_DESTAQUE = [
+    {tag:'Especialidade',nome:'Prato Principal 1',descricao:'Descrição do prato, ingredientes principais e forma de preparação. Uma verdadeira iguaria da nossa cozinha.',preco:'€ 14,50'},
+    {tag:'Mais pedido',nome:'Prato Principal 2',descricao:'Descrição do prato, ingredientes principais e forma de preparação. O favorito dos nossos clientes habituais.',preco:'€ 16,00'},
+    {tag:'Novidade',nome:'Prato Principal 3',descricao:'Descrição do prato, ingredientes principais e forma de preparação. Uma nova adição ao nosso menu sazonal.',preco:'€ 13,50'}
+  ];
+
+  const MENU = {
+    etiqueta: 'Cardápio',
+    titulo: 'O nosso menu',
+    entradas: [
+      ['Dadinho de Tapioca','Dadinho de Tapioca é uma deliciosa opção para começar o seu jantar.','€ 6,50'],
+      ['Fritas da Casa','Batatas reais servidas com Pastrami, acompanhadas de Picles e mayonesa.','€ 9,00'],
+      ['Spicy Wings','Wings picantes com molho especial.','€ 10,50'],
+    ],
+    principais: [
+      ['La Doble Callejera','Doble smash burger com queijo cheddar derretido em camadas, cebola caramelizada lentamente e molho especial da casa. Suculento, intenso e com aquele toque street que marca presença.','€ 14,50'],
+      ['La Cremosa Salvaje','Explosão de sabor com carne grelhada, bacon crocante e um molho cremoso intenso que escorre por todo o burger. Pesado, indulgente e feito pra quem quer sentir cada mordida.','€ 16,00'],
+      ['La Clásica Rebelde','O clássico elevado ao nível De La Calle. Carne suculenta, cheddar, alface fresca, tomate e um blend de molhos que equilibra perfeitamente sabor e textura. Simples, mas impossível de errar.','€ 13,50'],
+    ],
+    sobremesas: [
+      ['La Calle Cheesecake','Cheesecake cremosa com base crocante, finalizada com calda quente de frutos vermelhos. Equilíbrio perfeito entre doce e ácido, leve mas marcante.','€ 4,50'],
+      ['El Brownie Prohibido','Brownie intenso de chocolate, quente por dentro, servido com gelado de baunilha e calda derretida. Denso, indulgente e simplesmente impossível de parar.','€ 5,00'],
+      ['La Tentación Dulce de Leche','Camadas de doce de leite cremoso com chantilly leve e toque de biscoito crocante. Suave, doce na medida certa e viciante desde a primeira colher.','€ 4,00'],
+    ],
+    bebidas: [
+      ['Lagunita IPA','€ 3,50'],
+      ['Refrigerantes','€ 2,50'],
+      ['Sumos Naturais','€ 2,50'],
+      ['El Fuego Ahumado','Drink intenso com notas defumadas, leve picância e final quente. Profundo, marcante e feito pra quem curte sabores mais ousados e envolventes.','€ 12,00'],
+      ['La Calle Spritz','Refrescante e vibrante, com toque cítrico de laranja, notas amargas elegantes e final levemente adocicado. Leve, moderno e perfeito pra começar a noite.','€ 10,00'],
+        ['La Calle Spritz','Refrescante e vibrante, com toque cítrico de laranja, notas amargas elegantes e final levemente adocicado. Leve, moderno e perfeito pra começar a noite.','€ 10,00'],
+        ]
+  };
+
+  const INFORMACOES = {
+    etiqueta:'Informações',
+    titulo:'Onde estamos e <em style="color:var(--gold)">quando abrimos</em>',
+    horarioTitulo:'Horário de Funcionamento',
+    horarios:[['Segunda','Fechado',true],['Terça a Sexta','12h–15h · 19h–23h',false],['Sábado','12h–16h · 19h–23h30',false],['Domingo','12h–16h',false]],
+    localizacaoTitulo:'Localização',
+    mapaTexto:'Mapa — integrar Google Maps aqui',
+    contactosTitulo:'Contactos',
+    botaoLigar:'Ligar para reservar'
+  };
+
+  const DEPOIMENTOS = {
+    etiqueta:'Testemunhos',
+    titulo:'O que dizem os nossos clientes',
+    items:[
+      ['Maria A.','Google · Há 2 semanas','Fui recentemente com meus amigos e a experiência foi impecável. O ambiente é muito moderno e o atendimento é excelente.'],
+      ['João P.','TripAdvisor · Há 1 mês','A melhor hamburgueria do Porto,os burgers são incríveis, suculentos e cheios de sabor. O ambiente é perfeito para uma noite descontraída com amigos ou um encontro casual.'],
+      ['Sofia R.','Google · Há 3 semanas','Voces tem que experimentar o La Doble Callejera, é simplesmente divino! A combinação de sabores é perfeita e a qualidade dos ingredientes é evidente em cada mordida. O atendimento também merece destaque, super atenciosos e rápidos. Recomendo muito!']
+    ]
+  };
+
+  const RESERVAS = {
+    etiqueta:'Reservas',
+    titulo:'Reserve a sua <em style="color:var(--gold)">mesa hoje.</em>',
+    texto:'Garanta o seu lugar e venha desfrutar de uma hamburguesa deliciosa. Respondemos a todas as reservas em menos de 2 horas.',
+    whatsappSub:'Resposta imediata',
+    telefoneSub:'Seg–Dom · 10h–23h',
+    emailSub:'Resposta em até 2h',
+    formularioTitulo:'Fazer reserva',
+    botaoFormulario:'Confirmar reserva',
+    sucessoTitulo:'Reserva recebida!',
+    sucessoTexto:'Entraremos em contacto em breve para confirmar a sua mesa.'
+  };
+
+  const RODAPE = {
+    descricao:'Hamburgueria urbana com vibe noturna e energia jovem. Smash burgers suculentos, ambiente moderno e luzes neon que transformam cada noite numa experiência.',
+    credito:'Desenvolvido por Riverside Studio'
+  };
+
   /*
   Exemplo rapido:
   nome: 'Restaurante Flor do Rio',
@@ -867,8 +1004,217 @@ html:not(.has-js) .rv-r{opacity:1;transform:none;transition:none}
     });
   };
 
+  const preencher = valor => {
+    let texto = String(valor ?? '');
+    Object.entries(dados).forEach(([de,para])=>{ texto = texto.split(de).join(para); });
+    return texto;
+  };
+
+  const setTexto = (seletor, texto) => {
+    const el = document.querySelector(seletor);
+    if(el && texto !== undefined) el.textContent = preencher(texto);
+  };
+
+  const setHtml = (seletor, html) => {
+    const el = document.querySelector(seletor);
+    if(el && html !== undefined) el.innerHTML = preencher(html);
+  };
+
+  const aplicarImagem = (seletor, url, overlay='') => {
+    const el = document.querySelector(seletor);
+    if(!el || !url) return;
+    el.classList.add('tem-foto');
+    el.style.backgroundImage = `${overlay ? overlay + ',' : ''}url("${url}")`;
+  };
+
+  const aplicarVisual = () => {
+    const r = document.documentElement;
+    r.style.setProperty('--red', VISUAL.corPrincipal);
+    r.style.setProperty('--red-dk', VISUAL.corPrincipalEscura);
+    r.style.setProperty('--red-lt', VISUAL.corPrincipalClara);
+    r.style.setProperty('--gold', VISUAL.corDestaque);
+    r.style.setProperty('--gold-lt', VISUAL.corDestaqueClara);
+    r.style.setProperty('--cream', VISUAL.fundoClaro);
+    r.style.setProperty('--warm', VISUAL.fundoSuave);
+    r.style.setProperty('--dark', VISUAL.fundoEscuro);
+    r.style.setProperty('--brown', VISUAL.textoEscuro);
+    r.style.setProperty('--brown-md', VISUAL.textoMedio);
+    r.style.setProperty('--gray', VISUAL.textoSuave);
+    r.style.setProperty('--font-d', VISUAL.fonteTitulos);
+    r.style.setProperty('--font-b', VISUAL.fonteTexto);
+
+    const fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
+    if(fontLink && VISUAL.googleFontsUrl) fontLink.href = VISUAL.googleFontsUrl;
+  };
+
+  const aplicarMarca = () => {
+    const partes = preencher(CLIENTE.nome).trim().split(/\s+/);
+    const destaque = partes.length > 1 ? partes.pop() : '';
+    const base = partes.join(' ') || preencher(CLIENTE.nome);
+    const logoHtml = destaque ? `${base} <span>${destaque}</span>` : base;
+    document.querySelectorAll('.nav-logo,.foot-logo').forEach(el=>{ el.innerHTML = logoHtml; });
+  };
+
+  const aplicarHero = () => {
+    setTexto('.hero-eyebrow', HERO.etiqueta);
+    setHtml('.hero h1', HERO.titulo);
+    setTexto('.hero-lead', HERO.descricao);
+    setTexto('.hero-btns .btn-primary', HERO.botaoReservar);
+    setTexto('.hero-btns .btn-outline', HERO.botaoMenu);
+    const infos = document.querySelectorAll('.hero-info .hi');
+    const heroInfos = [
+      [HERO.infoMoradaTitulo, HERO.infoMoradaTexto],
+      [HERO.infoHorarioTitulo, HERO.infoHorarioTexto],
+      [HERO.infoTelefoneTitulo, HERO.infoTelefoneTexto]
+    ];
+    infos.forEach((item,i)=>{
+      const strong = item.querySelector('strong');
+      const text = item.querySelector('.hi-text');
+      if(strong) strong.textContent = preencher(heroInfos[i][0]);
+      if(text){
+        strong && text.removeChild(strong);
+        text.textContent = preencher(heroInfos[i][1]);
+        strong && text.prepend(strong);
+      }
+    });
+  };
+
+  const aplicarFita = () => {
+    const track = document.querySelector('.ribbon-track');
+    if(!track || !Array.isArray(FITA)) return;
+    const itens = [...FITA, ...FITA];
+    track.innerHTML = itens.map(item=>`<div class="ri">${preencher(item)}</div><div class="rd"></div>`).join('');
+  };
+
+  const aplicarSobre = () => {
+    setTexto('.sobre-text .label', SOBRE.etiqueta);
+    setHtml('.sobre-text h2', SOBRE.titulo);
+    const body = document.querySelector('.sobre-body');
+    if(body && Array.isArray(SOBRE.paragrafos)){
+      body.innerHTML = SOBRE.paragrafos.map(p=>`<p>${preencher(p)}</p>`).join('');
+    }
+    setHtml('.sb-n', SOBRE.anosNumero);
+    setHtml('.sb-l', SOBRE.anosTexto);
+    document.querySelectorAll('.sobre-feats .sf p').forEach((el,i)=>{
+      if(SOBRE.diferenciais[i]) el.textContent = preencher(SOBRE.diferenciais[i]);
+    });
+    setTexto('.sobre-text .btn', SOBRE.botao);
+  };
+
+  const aplicarPratosDestaque = () => {
+    setTexto('.pratos-head .label', PRATOS_SECAO.etiqueta);
+    setTexto('.pratos-head h2', PRATOS_SECAO.titulo);
+    setTexto('.pratos-head p', PRATOS_SECAO.descricao);
+    setTexto('.pratos .btn', PRATOS_SECAO.botao);
+
+    document.querySelectorAll('.pratos-grid .prato').forEach((card,i)=>{
+      const prato = PRATOS_DESTAQUE[i];
+      if(!prato) return;
+      setTextoCard(card,'.prato-tag',prato.tag);
+      setTextoCard(card,'.prato-body h3',prato.nome);
+      setTextoCard(card,'.prato-body p',prato.descricao);
+      setTextoCard(card,'.prato-price',prato.preco);
+    });
+  };
+
+  const setTextoCard = (root,seletor,texto) => {
+    const el = root.querySelector(seletor);
+    if(el && texto !== undefined) el.textContent = preencher(texto);
+  };
+
+  const aplicarMenu = () => {
+    setTexto('.menu-head .label', MENU.etiqueta);
+    setTexto('.menu-head h2', MENU.titulo);
+    ['entradas','principais','sobremesas','bebidas'].forEach(categoria=>{
+      const linhas = document.querySelectorAll(`#${categoria} .mi`);
+      const itens = MENU[categoria] || [];
+      linhas.forEach((linha,i)=>{
+        const item = itens[i];
+        if(!item) return;
+        setTextoCard(linha,'h4',item[0]);
+        setTextoCard(linha,'p',item[1]);
+        setTextoCard(linha,'.mi-price',item[2]);
+      });
+    });
+  };
+
+  const aplicarInformacoes = () => {
+    setTexto('#horarios .label', INFORMACOES.etiqueta);
+    setHtml('#horarios h2', INFORMACOES.titulo);
+    const cols = document.querySelectorAll('#horarios .hor-col');
+    if(cols[0]) setTextoCard(cols[0],'h3',INFORMACOES.horarioTitulo);
+    if(cols[1]) setTextoCard(cols[1],'h3',INFORMACOES.localizacaoTitulo);
+    if(cols[2]) setTextoCard(cols[2],'h3',INFORMACOES.contactosTitulo);
+    setTexto('.mapa-placeholder p', INFORMACOES.mapaTexto);
+    setTexto('#horarios .btn', INFORMACOES.botaoLigar);
+
+    document.querySelectorAll('#horarios .hor-col:first-child .hor-row').forEach((linha,i)=>{
+      const item = INFORMACOES.horarios[i];
+      if(!item) return;
+      setTextoCard(linha,'.hor-day',item[0]);
+      setTextoCard(linha,'.hor-time',item[1]);
+      const hora = linha.querySelector('.hor-time');
+      if(hora) hora.classList.toggle('closed', Boolean(item[2]));
+    });
+  };
+
+  const aplicarDepoimentos = () => {
+    setTexto('.dep-head .label', DEPOIMENTOS.etiqueta);
+    setTexto('.dep-head h2', DEPOIMENTOS.titulo);
+    document.querySelectorAll('.dep-grid .dep').forEach((card,i)=>{
+      const item = DEPOIMENTOS.items[i];
+      if(!item) return;
+      setTextoCard(card,'blockquote',`"${preencher(item[2])}"`);
+      setTextoCard(card,'.dep-name',item[0]);
+      setTextoCard(card,'.dep-loc',item[1]);
+      const av = card.querySelector('.dep-av');
+      if(av) av.textContent = preencher(item[0]).split(/\s+/).map(p=>p[0]).join('').slice(0,2).toUpperCase();
+    });
+  };
+
+  const aplicarReservas = () => {
+    setTexto('.reservas .label', RESERVAS.etiqueta);
+    setHtml('.reservas h2', RESERVAS.titulo);
+    setTexto('.reservas .rv-l > p', RESERVAS.texto);
+    const subs = document.querySelectorAll('.rc-sub');
+    if(subs[0]) subs[0].textContent = preencher(RESERVAS.whatsappSub);
+    if(subs[1]) subs[1].textContent = preencher(RESERVAS.telefoneSub);
+    if(subs[2]) subs[2].textContent = preencher(RESERVAS.emailSub);
+    setTexto('.form-wrap h3', RESERVAS.formularioTitulo);
+    setTexto('.btn-submit', RESERVAS.botaoFormulario);
+    setTexto('.form-ok h4', RESERVAS.sucessoTitulo);
+    setTexto('.form-ok p', RESERVAS.sucessoTexto);
+  };
+
+  const aplicarRodape = () => {
+    setTexto('.foot-desc', RODAPE.descricao);
+    const credito = document.querySelector('.foot-btm p:last-child');
+    if(credito) credito.innerHTML = preencher(RODAPE.credito).replace('Riverside Studio','<span style="color:var(--gold)">Riverside Studio</span>');
+  };
+
+  const aplicarImagens = () => {
+    aplicarImagem('.hero-photo-placeholder', IMAGENS.hero, 'linear-gradient(rgba(26,12,4,.50),rgba(26,12,4,.50))');
+    aplicarImagem('.sobre-placeholder', IMAGENS.sobre, 'linear-gradient(rgba(42,21,8,.10),rgba(42,21,8,.10))');
+    aplicarImagem('.ph1', IMAGENS.prato1, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.ph2', IMAGENS.prato2, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.ph3', IMAGENS.prato3, 'linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18))');
+    aplicarImagem('.mapa-placeholder', IMAGENS.mapa, 'linear-gradient(rgba(26,12,4,.42),rgba(26,12,4,.42))');
+  };
+
   trocarTextos(document.body);
   trocarAtributos();
+  aplicarVisual();
+  aplicarMarca();
+  aplicarHero();
+  aplicarFita();
+  aplicarSobre();
+  aplicarPratosDestaque();
+  aplicarMenu();
+  aplicarInformacoes();
+  aplicarDepoimentos();
+  aplicarReservas();
+  aplicarRodape();
+  aplicarImagens();
 
   const nav=document.getElementById('nav');
   window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50),{passive:true});
